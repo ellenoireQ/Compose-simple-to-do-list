@@ -1,9 +1,15 @@
 package com.exyz.simple_todo
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
+import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,6 +32,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -34,10 +44,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -67,7 +79,10 @@ import com.exyz.simple_todo.uiApp.task.AboutInfo
 import com.exyz.simple_todo.uiApp.task.BeautifulTaskOnlyHeader
 import com.exyz.simple_todo.uiApp.task.TaskScreen
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+import android.Manifest
+import androidx.annotation.RequiresApi
 
 val Poppins = FontFamily(
     Font(R.font.poppins_medium, FontWeight.Medium, FontStyle.Normal),
@@ -97,12 +112,41 @@ class MainActivity : ComponentActivity() {
     lateinit var userRepository: UserRepository
 
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
         setContent {
             AperfTheme {
+                val context = LocalContext.current
+                val snackbarHostState = remember { SnackbarHostState() }
+                val coroutineScope = rememberCoroutineScope()
+
+                val launcher = rememberLauncherForActivityResult(
+                    contract = ActivityResultContracts.RequestPermission(),
+                    onResult = { isGranted ->
+                        if (!isGranted) {
+                            coroutineScope.launch {
+                                val result = snackbarHostState.showSnackbar(
+                                    message = "Notification permission is required.",
+                                    actionLabel = "Settings"
+                                )
+                                if (result == SnackbarResult.ActionPerformed) {
+                                    // Go to notification settings
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                                        val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
+                                            putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+                                        }
+                                        context.startActivity(intent)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                )
+
                 val taskViewModel: Task = viewModel()
                 val navController = rememberNavController()
                 var bstate by remember { mutableStateOf(false) }
@@ -145,11 +189,13 @@ class MainActivity : ComponentActivity() {
                     }
                 }
                 Scaffold(
+                    snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
                     bottomBar = {
                         BottomAppBar(
                             modifier = Modifier.height(90.dp),
                             contentPadding = PaddingValues(top = 12.dp)
                         ) {
+                            launcher.launch(Manifest.permission.POST_NOTIFICATIONS)
                             listBottomBar.forEachIndexed { index, app ->
                                 NavigationBarItem(
                                     onClick = {
@@ -192,6 +238,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     containerColor = MaterialTheme.colorScheme.surface
                 ) { innerPadding ->
+
                     Column(Modifier.padding(innerPadding)) {
                         var valueOfIndex by remember { mutableStateOf(0) }
                         var aboutWindowIsOpened = remember {mutableStateOf(true)}
