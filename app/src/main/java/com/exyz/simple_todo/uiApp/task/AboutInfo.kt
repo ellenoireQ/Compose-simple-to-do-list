@@ -85,7 +85,7 @@ fun AboutInfo(navController: NavController, onDismissRequest: () -> Unit) {
                     append("Find full source code at ")
                     withLink(
                         LinkAnnotation.Url(
-                            "https://developer.android.com/",
+                            "https://github.com/ellenoireQ/Compose-simple-to-do-list",
                             TextLinkStyles(
                                 style = SpanStyle(
                                     color = MaterialTheme.colorScheme.primary,
