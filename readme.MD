@@ -11,6 +11,7 @@ This **To-Do List** app is a simple task management application built using **Je
 
 ## 📕 Libraries:
 - **Jetpack Compose**: A declarative UI framework for Android development.
+- **Material Design 3**: Uses for themes UI
 - **Hilt**: Dependency injection for easier and cleaner dependency management.
 - **Room Database**: For locally storing tasks and data on the device.
 - **Kotlin**: A modern programming language for Android development.
