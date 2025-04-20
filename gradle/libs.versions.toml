@@ -1,0 +1,79 @@
+[versions]
+agp = "8.7.3"
+dagger = "2.46"
+daggerCompiler = "2.x"
+daggerCompilerVersion = "2.46"
+hiltAndroid = "2.51.1"
+hiltLifecycleViewmodel = "1.0.0-alpha03"
+javaxInject = "1"
+jetbrainsKotlinxSerializationJson = "1.7.3"
+kotlin = "2.0.0"
+coreKtx = "1.15.0"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+kotlinStdlibCommon = "2.0.0"
+kotlinxSerializationJson = "1.6.2"
+kotlinxSerializationJsonVersion = "1.1.0"
+kotlinxSerializationRuntime = "0.14.0"
+kotlinxSerializationRuntimeCommon = "0.4"
+kotlinxSerializationRuntimeNative = "0.14.0"
+lifecycleRuntimeKtx = "2.6.1"
+activityCompose = "1.8.0"
+composeBom = "2024.04.01"
+navigationCompose = "2.8.8"
+protoliteWellKnownTypes = "18.0.0"
+roomCompiler = "2.5.0"
+roomKtx = "2.6.1"
+roomKtxVersion = "2.3.0"
+roomRuntime = "2.6.1"
+runtimeLivedata = "1.7.8"
+ycharts = "2.1.0"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-hilt-lifecycle-viewmodel = { module = "androidx.hilt:hilt-lifecycle-viewmodel", version.ref = "hiltLifecycleViewmodel" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomKtxVersion" }
+androidx-room-compiler-v250 = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
+androidx-room-ktx-v230 = { module = "androidx.room:room-ktx", version.ref = "roomKtxVersion" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+dagger = { module = "com.google.dagger:dagger", version.ref = "daggerCompiler" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompiler" }
+dagger-compiler-v246 = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompilerVersion" }
+dagger-v246 = { module = "com.google.dagger:dagger", version.ref = "dagger" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "daggerCompiler" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
+hilt-android-v2511 = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "daggerCompiler" }
+javax-inject = { module = "javax.inject:javax.inject", version.ref = "javaxInject" }
+jetbrains-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization- json", version.ref = "kotlinxSerializationJsonVersion" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+kotlin-stdlib-common = { module = "org.jetbrains.kotlin:kotlin-stdlib-common", version.ref = "kotlinStdlibCommon" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+kotlinx-serialization-json-v173 = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "jetbrainsKotlinxSerializationJson" }
+kotlinx-serialization-runtime = { module = "org.jetbrains.kotlinx:kotlinx-serialization-runtime", version.ref = "kotlinxSerializationRuntime" }
+kotlinx-serialization-runtime-common = { module = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common", version.ref = "kotlinxSerializationRuntimeCommon" }
+kotlinx-serialization-runtime-native = { module = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native", version.ref = "kotlinxSerializationRuntimeNative" }
+protolite-well-known-types = { group = "com.google.firebase", name = "protolite-well-known-types", version.ref = "protoliteWellKnownTypes" }
+androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
+ycharts = { module = "co.yml:ycharts", version.ref = "ycharts" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
