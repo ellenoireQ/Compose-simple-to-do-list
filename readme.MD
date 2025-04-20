@@ -1,5 +1,7 @@
 # To-Do List App - Simple Task Manager with Jetpack Compose
 
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+
 This **To-Do List** app is a simple task management application built using **Jetpack Compose**, Android's modern toolkit for building UIs declaratively. The app allows users to create, edit, and delete their tasks with an intuitive and responsive interface.
 
 ## Features:
